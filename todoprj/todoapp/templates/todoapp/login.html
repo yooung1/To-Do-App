@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en" dir="ltr">
   <head>
 
@@ -10,10 +9,15 @@
    </head>
 <body>
   <div class="wrapper">
-    <h2>Login</h2>
-    {%csrf_token%}
-    
+    <h2>Login</h2> <br>
+    {% if messages %}
+      {% for message in messages %}
+        <h2 style="color: red;">{{message}}</h2>
+      {%endfor%}
+    {%endif%}
+
     <form action="#" method="POST">
+      {% csrf_token %}
       <div class="input-box">
         <input type="text" placeholder="Enter your username" required name="uname">
       </div>
@@ -26,7 +30,7 @@
         <input type="Submit" value="Login">
       </div>
       <div class="text">
-        <h3>Don't have an account? <a href="#">Register now</a></h3>
+        <h3>Don't have an account? <a href="{% url 'register' %}">Register now</a></h3>
       </div>
       <div class="text">
         <h3>Forgot Password? <a href="#">Reset</a></h3>
